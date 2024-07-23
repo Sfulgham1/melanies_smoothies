@@ -2,6 +2,9 @@
 import streamlit as st
 from snowflake.snowpark.functions import col
 
+import streamlit as pd
+from snowflake.pandas.functions import col
+
 import requests
 
 # Write directly to the app
@@ -16,7 +19,11 @@ st.write("The name on your Smoothie will be:", name_on_order)
 cnx = st.connection("snowflake")
 session = cnx.session()
 my_dataframe = session.table("smoothies.public.fruit_options").select(col('Fruit_Name'),col('Search_On'))
-st.dataframe(data=my_dataframe, use_container_width=True)
+#st.dataframe(data=my_dataframe, use_container_width=True)
+#st.stop()
+
+pd_df = my_dataframe.to_panda()
+st.dataframe(pd_df)
 st.stop()
 
 ingredients_list = st.multiselect(
