@@ -3,7 +3,7 @@ import streamlit as st
 from snowflake.snowpark.functions import col
 
 import modin.pandas as pd
-from snowflake.snowpark.modin.plugin
+#from snowflake.snowpark.modin.plugin
 
 import requests
 
